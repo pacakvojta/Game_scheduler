@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Form</title>
+    <style>
+        .optional {
+            font-size: smaller;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Input Form</h1>
+    <form method="post">
+        <label for="rounds">Number of Rounds :</label>
+        <input type="text" id="rounds" name="rounds"><br><br>
+
+        <!-- Input fields for players 1 to 6 -->
+        {% for i in range(1, 7) %}
+            <label for="player{{ i }}">Player {{ i }}:</label>
+            <input type="text" id="player{{ i }}" name="player{{ i }}"><br>
+        {% endfor %}
+        <!-- <br> -->
+        <!-- Input fields for players 7 to 14 with optional tag behind the input -->
+        {% for i in range(7, 15) %}
+            <label for="player{{ i }}">Player {{ i }}:</label>
+            <input type="text" id="player{{ i }}" name="player{{ i }}">
+            <span class="optional">(optional)</span><br>
+        {% endfor %}
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

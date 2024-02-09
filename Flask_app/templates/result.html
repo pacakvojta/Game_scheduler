@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <style>
+        /* CSS styles for adjusting font size */
+        h1 {
+            font-size: 22px; /* Adjust the font size as needed */
+        }
+        h2, h3 {
+            font-size: 19px; /* Adjust the font size of subtitles */
+        }
+        pre {
+            font-size: 16px; /* Adjust the font size of text output */
+        }
+        /* Adjust cell size for DataFrame */
+        table {
+            border-collapse: collapse;
+            width: 30%;
+        }
+        th, td {
+            border: 3px solid #dddddd;
+            text-align: left;
+            padding: 4px;
+        }
+    </style>
+    <script>
+        // JavaScript to make diagonal cells bold
+        document.addEventListener('DOMContentLoaded', function() {
+            var table = document.querySelector('.teammate-matrix');
+            if (table) {
+                var rows = table.rows;
+                var diagonalLength = Math.min(rows.length, rows[0].cells.length);
+                for (var i = 0; i < diagonalLength; i++) {
+                    rows[i].cells[i].style.fontWeight = 'bold';
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Game Schedule</h1>
+    <a href="/">Generate Teams again</a>
+    <pre style="font-size: 16px;">{{ text_output }}</pre> <!-- Adjust the font size of text output -->
+    <h2>Teammate Matrix:</h2>
+    {{ df1.to_html(classes='table table-striped table-hover teammate-matrix', escape=False) | safe }} <!-- Adjust cell size for DataFrame -->
+    <h3>Opponent Matrix:</h3>
+    {{ df2.to_html(classes='table table-striped table-hover teammate-matrix', escape=False) | safe }} <!-- Adjust cell size for DataFrame -->
+</body>
+</html19
