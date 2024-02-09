@@ -5,7 +5,7 @@ def create_game_schedule(player1,player2,player3,player4,player5,player6,player7
     import pandas as pd
     import random 
     from itertools import chain, combinations
-    from utils import get_opp_limit, players_teams_clean, adjust_solo_games, init_matrix
+    from utils import get_opp_limit, players_teams_clean, adjust_solo_games, init_matrix, df_custom_merge
     
     players_init = [player1,player2,player3,player4,player5,player6,player7,player8,player9,player10,player11,player12,player13,player14]
     players, teams_cnt = players_teams_clean(players_lst=players_init)
@@ -84,6 +84,8 @@ def create_game_schedule(player1,player2,player3,player4,player5,player6,player7
     if 'EmptySlot' in players: # Simple condition to print out schedule in nicer way
         game_schedule = adjust_solo_games(game_schedule)
 
+    matrix_final = df_custom_merge(matrix_teammates,matrix_opponents)
+
     # Printed output to be displayed in HTML
     text_ouput = '\n'.join([f"Round {i+1}:\n" +
                         ''.join([f"\t{game_schedule[i][j]} vs. {game_schedule[i][j+1]}\n" for j in range(0, teams_cnt, 2)]) +
@@ -92,4 +94,4 @@ def create_game_schedule(player1,player2,player3,player4,player5,player6,player7
                         f'==================================================' for i in range(rounds)])
     text_ouput = text_ouput.replace("'", "")
     
-    return text_ouput, matrix_teammates, matrix_opponents
+    return text_ouput, matrix_final, matrix_teammates, matrix_opponents

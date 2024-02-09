@@ -62,3 +62,17 @@ def init_matrix(players,n_matrices=2):
             m.iloc[i, i] = 1
 
     return init_matrices
+
+def df_custom_merge(df1,df2):
+
+    import pandas as pd
+    df_final = pd.DataFrame(index=df1.index, columns=df1.columns)
+
+    for row_index, row in enumerate(df1.index):
+        for col_index, col in enumerate(df1.columns):
+            # Concatenate the values with a comma
+            merged_value = str(df1.loc[row, col]) + ', ' + str(df2.loc[row, col])
+            # Assign the merged value to the final DataFrame
+            df_final.loc[row, col] = merged_value
+
+    return df_final
