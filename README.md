@@ -1,4 +1,4 @@
-# Game Finder
+# Game Scheduler
 
 ## Simple interactive python Flask App that prepares doubles pairings.
 Run script to make sure that you are teammed up with different player every round and you dont face same opponent over and over again.
