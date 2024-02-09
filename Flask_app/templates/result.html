@@ -7,7 +7,7 @@
         h1 {
             font-size: 22px; /* Adjust the font size as needed */
         }
-        h2, h3 {
+        h2 {
             font-size: 18px; /* Adjust the font size of subtitles */
         }
         pre {
@@ -20,19 +20,30 @@
         }
         th, td {
             border: 3px solid #dddddd;
-            text-align: left;
-            padding: 3px;
+            text-align: center; /* Align text in the middle */
+            vertical-align: middle; /* Align vertically in the middle */
+            padding: 5px; /* Increase padding for better spacing */
+        }
+        /* Define light grey background color */
+        .diagonal-cell {
+            background-color: #f2f2f2; /* Light grey */
+        }
+        /* Adjust font size for explanation text */
+        .explanation-text {
+            font-size: 13px; /* Adjust the font size as needed */
         }
     </style>
     <script>
-        // JavaScript to make diagonal cells bold
+        // JavaScript to replace text content of diagonal cells with capital "X" and fill with light grey color
         document.addEventListener('DOMContentLoaded', function() {
             var table = document.querySelector('.teammate-matrix');
             if (table) {
                 var rows = table.rows;
                 var diagonalLength = Math.min(rows.length, rows[0].cells.length);
                 for (var i = 0; i < diagonalLength; i++) {
-                    rows[i].cells[i].style.fontWeight = 'bold';
+                    var cell = rows[i].cells[i];
+                    cell.classList.add('diagonal-cell');
+                    cell.textContent = '-'; // Replace text content with "X"
                 }
             }
         });
@@ -41,10 +52,12 @@
 <body>
     <h1>Game Schedule</h1>
     <pre style="font-size: 16px;">{{ text_output }}</pre> <!-- Adjust the font size of text output -->
-    <h2>Teammate Matrix:</h2>
+    <h2>Teammates/Opponents Matrix</h2>
+    <div class="explanation-text">
+        <p>First value represents how many times players X,Y were teamed up, Second value how many times they faced each other as opponents.</p>
+    </div>
     {{ df1.to_html(classes='table table-striped table-hover teammate-matrix', escape=False) | safe }} <!-- Adjust cell size for DataFrame -->
-    <h3>Opponent Matrix:</h3>
-    {{ df2.to_html(classes='table table-striped table-hover teammate-matrix', escape=False) | safe }} <!-- Adjust cell size for DataFrame -->
+    <br>
     <a href="/">Generate Teams again</a>
 </body>
-</html19
+</html>
