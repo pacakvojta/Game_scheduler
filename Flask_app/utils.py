@@ -53,7 +53,7 @@ def init_matrix(players,n_matrices=2):
     init_matrices = []
 
     for _ in range(n_matrices):
-        matrix = pd.DataFrame(index=players, columns=players).fillna(0)
+        matrix = pd.DataFrame(index=players, columns=players).fillna(0).infer_objects(copy=False)
         init_matrices.append(matrix)
 
     # Fill diagonal elements for each matrix
