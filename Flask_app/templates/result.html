@@ -16,13 +16,14 @@
         /* Adjust cell size for DataFrame */
         table {
             border-collapse: collapse;
-            width: 25%;
+            width: auto; /* Allow table to expand as needed */
         }
         th, td {
             border: 3px solid #dddddd;
             text-align: center; /* Align text in the middle */
             vertical-align: middle; /* Align vertically in the middle */
             padding: 5px; /* Increase padding for better spacing */
+            white-space: nowrap; /* Prevent text wrapping */
         }
         /* Define light grey background color */
         .diagonal-cell {
@@ -52,9 +53,9 @@
 <body>
     <h1>Game Schedule</h1>
     <pre style="font-size: 16px;">{{ text_output }}</pre> <!-- Adjust the font size of text output -->
-    <h2>Teammates/Opponents Matrix</h2>
+    <h2>Teammates/Opponents Matrix:</h2>
     <div class="explanation-text">
-        <p>First value represents how many times players X,Y were teamed up, Second value how many times they faced each other as opponents.</p>
+        <p>Explanation: This table shows the teammates and opponents for each player. The diagonal cells represent players playing against themselves.</p>
     </div>
     {{ df1.to_html(classes='table table-striped table-hover teammate-matrix', escape=False) | safe }} <!-- Adjust cell size for DataFrame -->
     <br>
