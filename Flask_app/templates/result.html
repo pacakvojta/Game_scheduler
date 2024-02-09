@@ -8,20 +8,20 @@
             font-size: 22px; /* Adjust the font size as needed */
         }
         h2, h3 {
-            font-size: 19px; /* Adjust the font size of subtitles */
+            font-size: 18px; /* Adjust the font size of subtitles */
         }
         pre {
-            font-size: 16px; /* Adjust the font size of text output */
+            font-size: 15px; /* Adjust the font size of text output */
         }
         /* Adjust cell size for DataFrame */
         table {
             border-collapse: collapse;
-            width: 30%;
+            width: 25%;
         }
         th, td {
             border: 3px solid #dddddd;
             text-align: left;
-            padding: 4px;
+            padding: 3px;
         }
     </style>
     <script>
@@ -40,11 +40,11 @@
 </head>
 <body>
     <h1>Game Schedule</h1>
-    <a href="/">Generate Teams again</a>
     <pre style="font-size: 16px;">{{ text_output }}</pre> <!-- Adjust the font size of text output -->
     <h2>Teammate Matrix:</h2>
     {{ df1.to_html(classes='table table-striped table-hover teammate-matrix', escape=False) | safe }} <!-- Adjust cell size for DataFrame -->
     <h3>Opponent Matrix:</h3>
     {{ df2.to_html(classes='table table-striped table-hover teammate-matrix', escape=False) | safe }} <!-- Adjust cell size for DataFrame -->
+    <a href="/">Generate Teams again</a>
 </body>
 </html19
